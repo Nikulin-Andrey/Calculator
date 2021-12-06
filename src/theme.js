@@ -1,13 +1,17 @@
 import { css } from 'styled-components'
 
+const THEME_UNIT_SIZE = 10
+
+const spacing = margins => THEME_UNIT_SIZE * margins
+
 const font = 'sans-serif'
 
 // Color palette
 const black = '#000000'
 const white = '#ffffff'
 const error = '#c86464'
-const primary = '#c06c84'
-const secondary = '#6c5b7b'
+const primary = '#434343'
+const secondary = '#f2f2f2'
 const secondaryLight = '#6a6b7b'
 
 const boxShadows = [
@@ -44,6 +48,7 @@ export default {
   below,
   boxShadows,
   font,
+  spacing,
   spaces: [0, 4, 8, 16, 32, 64, 128],
   fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80],
   colors: {
