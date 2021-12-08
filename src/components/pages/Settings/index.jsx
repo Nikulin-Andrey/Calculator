@@ -1,13 +1,14 @@
 import React from 'react'
 
-import PageLayout from '@/layouts/Basic'
+import PageLayout from '@/components/layouts/PageLayout'
+import Calculator from '@/containers/Calculator'
 
 import { Container } from './components'
 
 export default () => {
   return (
     <PageLayout>
-      <Container></Container>
+      <Container>settings</Container>
     </PageLayout>
   )
 }

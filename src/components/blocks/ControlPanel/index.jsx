@@ -13,8 +13,8 @@ export default () => {
     <Container>
       Calculator App
       <Links>
-        <NavLink to={HOME_PAGE_ROUTE}>HOME</NavLink>
-        <NavLink to={SETTINGS_PAGE_ROUTE}>SETTINGS</NavLink>
+        <NavLink to={HOME_PAGE_ROUTE}>Home</NavLink>
+        <NavLink to={SETTINGS_PAGE_ROUTE}>Settings</NavLink>
       </Links>
     </Container>
   )

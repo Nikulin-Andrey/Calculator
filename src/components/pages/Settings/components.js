@@ -8,8 +8,6 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
-
-  padding: ${({ theme }) => theme.spaces[4]}px;
 `
 
 export const Heading = styled.h3``

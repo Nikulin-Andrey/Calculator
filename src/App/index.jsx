@@ -6,24 +6,32 @@ import {
   SETTINGS_PAGE_ROUTE,
 } from '@/constants'
 
-import Loader from '@/components/Loader'
+import Header from '@/components/common/Header'
+import Loader from '@/components/common/Loader'
 
-const HomePage = lazy(() => import('@/pages/Home'))
-const Settings = lazy(() => import('@/pages/Settings'))
+const HomePage = lazy(() =>
+  import('@/components/pages/Home'),
+)
+const Settings = lazy(() =>
+  import('@/components/pages/Settings'),
+)
 
 export default () => (
-  <Suspense fallback={<Loader />}>
-    <Switch>
-      <Route
-        exact
-        path={HOME_PAGE_ROUTE}
-        component={HomePage}
-      />
-      <Route
-        path={SETTINGS_PAGE_ROUTE}
-        component={Settings}
-      />
-      <Redirect to={HOME_PAGE_ROUTE} />
-    </Switch>
-  </Suspense>
+  <>
+    <Header />
+    <Suspense fallback={<Loader />}>
+      <Switch>
+        <Route
+          exact
+          path={HOME_PAGE_ROUTE}
+          component={HomePage}
+        />
+        <Route
+          path={SETTINGS_PAGE_ROUTE}
+          component={Settings}
+        />
+        <Redirect to={HOME_PAGE_ROUTE} />
+      </Switch>
+    </Suspense>
+  </>
 )
