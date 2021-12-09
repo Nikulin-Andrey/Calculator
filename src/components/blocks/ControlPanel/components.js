@@ -1,21 +1,45 @@
 import styled from 'styled-components'
 
-export const Container = styled.header`
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: ${({ theme }) => theme.spacing(3)}px;
-  font-size: ${({ theme }) => theme.spacing(3)}px;
-  display: flex;
-  justify-content: space-between;
+export const Container = styled.div`
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  padding: ${({ theme }) => theme.spacing(8)}px;
+  width: 100%;
 `
 
-export const Links = styled.div`
-  & a {
-    color: ${({ theme }) => theme.colors.white};
-    margin-left: ${({ theme }) => theme.spacing(3)}px;
-    text-decoration: none;
-  }
-  & .active {
-    text-decoration: underline;
-  }
+export const Heading = styled.h1`
+  font-size: ${({ theme }) => theme.spacing(6)}px;
+  margin-bottom: ${({ theme }) => theme.spacing(6)}px;
 `
+
+export const Select = styled.select`
+  padding: ${({ theme }) => theme.spacing(3)}px
+    ${({ theme }) => theme.spacing(2)}px;
+  width: ${({ theme }) => theme.spacing(40)}px;
+  border: 2px solid
+    ${({ theme }) => theme.colors.bordersColor};
+  border-radius: ${({ theme }) => theme.spacing(1)}px;
+  font-size: ${({ theme }) => theme.spacing(3)}px;
+  margin-bottom: ${({ theme }) => theme.spacing(3)}px;
+  margin-top: ${({ theme }) => theme.spacing(1)}px;
+`
+
+export const Button = styled.button`
+  display: block;
+  padding: ${({ theme }) => theme.spacing(3)}px
+    ${({ theme }) => theme.spacing(2)}px;
+  width: ${({ theme }) => theme.spacing(40)}px;
+  border: 2px solid
+    ${({ theme }) => theme.colors.bordersColor};
+  border-radius: ${({ theme }) => theme.spacing(1)}px;
+  font-size: ${({ theme }) => theme.spacing(3)}px;
+  background: ${({ theme }) => theme.colors.secondary};
+`
+
+export const Lable = styled.label`
+  font-size: ${({ theme }) => theme.spacing(2)}px;
+  display: flex;
+  flex-direction: column;
+`
+
+export const Option = styled.option``

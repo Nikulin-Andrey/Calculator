@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import Display from '@/components/blocks/Display'
 import Keypad from '@/components/blocks/Keypad'
+import History from '@/components/blocks/History'
 
 import {
   Container,
@@ -18,8 +19,9 @@ export default () => {
         <Display result="4500.603" />
         <TopLine />
         <Keypad />
+        <RightLine />
       </LeftContent>
-      <RightLine />
+      <History />
     </Container>
   )
 }

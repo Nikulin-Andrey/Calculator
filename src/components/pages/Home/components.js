@@ -5,9 +5,4 @@ export const Container = styled.div`
   height: 100%;
 
   background-color: ${({ theme }) => theme.colors.white};
-
-  display: flex;
-  align-items: center;
 `
-
-export const Heading = styled.h3``

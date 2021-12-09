@@ -6,16 +6,39 @@ import {
   SETTINGS_PAGE_ROUTE,
 } from '@/constants'
 
-import { Container, Links } from './components'
+import {
+  Container,
+  Expretion,
+  Heading,
+  ExpretionsContainer,
+} from './components'
 
 export default () => {
   return (
     <Container>
-      Calculator App
-      <Links>
-        <NavLink to={HOME_PAGE_ROUTE}>Home</NavLink>
-        <NavLink to={SETTINGS_PAGE_ROUTE}>Settings</NavLink>
-      </Links>
+      <Heading>History</Heading>
+      <ExpretionsContainer>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 * 1000</Expretion>
+        <Expretion>14 + 12</Expretion>
+        <Expretion>1 + 2</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 + 1</Expretion>
+        <Expretion>1 * 1000</Expretion>
+        <Expretion>14 + 12</Expretion>
+        <Expretion>1 + 2</Expretion>
+      </ExpretionsContainer>
     </Container>
   )
 }

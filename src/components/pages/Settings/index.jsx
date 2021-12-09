@@ -4,11 +4,14 @@ import PageLayout from '@/components/layouts/PageLayout'
 import Calculator from '@/containers/Calculator'
 
 import { Container } from './components'
+import ControlPanel from '@/components/blocks/ControlPanel'
 
 export default () => {
   return (
     <PageLayout>
-      <Container>settings</Container>
+      <Container>
+        <ControlPanel />
+      </Container>
     </PageLayout>
   )
 }

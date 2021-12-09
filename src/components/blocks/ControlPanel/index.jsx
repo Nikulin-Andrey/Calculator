@@ -6,16 +6,28 @@ import {
   SETTINGS_PAGE_ROUTE,
 } from '@/constants'
 
-import { Container, Links } from './components'
+import {
+  Button,
+  Container,
+  Heading,
+  Lable,
+  Option,
+  Select,
+} from './components'
 
 export default () => {
   return (
     <Container>
-      Calculator App
-      <Links>
-        <NavLink to={HOME_PAGE_ROUTE}>Home</NavLink>
-        <NavLink to={SETTINGS_PAGE_ROUTE}>Settings</NavLink>
-      </Links>
+      <Heading>Settings</Heading>
+      <Lable>
+        Switch Theme
+        <Select>
+          <Option>Light theme</Option>
+          <Option>Colored theme</Option>
+          <Option>Dark theme</Option>
+        </Select>
+      </Lable>
+      <Button>Clear All History</Button>
     </Container>
   )
 }

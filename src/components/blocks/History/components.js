@@ -1,21 +1,32 @@
 import styled from 'styled-components'
 
-export const Container = styled.header`
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: ${({ theme }) => theme.spacing(3)}px;
+export const Container = styled.div`
+  padding: ${({ theme }) => theme.spacing(3)}px
+    ${({ theme }) => theme.spacing(5)}px;
   font-size: ${({ theme }) => theme.spacing(3)}px;
-  display: flex;
-  justify-content: space-between;
+  width: 20%;
+  height: 95%;
 `
 
-export const Links = styled.div`
-  & a {
-    color: ${({ theme }) => theme.colors.white};
-    margin-left: ${({ theme }) => theme.spacing(3)}px;
-    text-decoration: none;
+export const Heading = styled.h2`
+  font-size: ${({ theme }) => theme.spacing(3)}px;
+  text-align: center;
+  font-weight: 300;
+`
+export const ExpretionsContainer = styled.div`
+  padding: ${({ theme }) => theme.spacing(6)}px 0;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  ::-webkit-scrollbar {
+    width: ${({ theme }) => theme.spacing(1)}px;
   }
-  & .active {
-    text-decoration: underline;
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary};
+    border-radius: ${({ theme }) => theme.spacing(1)}px;
   }
+`
+export const Expretion = styled.div`
+  color: ${({ theme }) => theme.colors.black};
+  margin-bottom: ${({ theme }) => theme.spacing(5)}px;
 `
