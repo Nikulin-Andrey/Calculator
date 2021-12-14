@@ -3,11 +3,13 @@ import { handleActions } from 'redux-actions'
 import {
   addOperandAtion,
   addOperationAtion,
+  changeThemeAction,
 } from '@/actions'
 
 const INITIAL_STATE = {
   displayValue: '0',
   result: 0,
+  theme: 'light',
 }
 
 export default handleActions(
@@ -23,6 +25,13 @@ export default handleActions(
       addOperationAtion,
       (state, action) => ({
         ...state,
+      }),
+    ],
+    [
+      changeThemeAction,
+      (state, action) => ({
+        ...state,
+        theme: action.payload,
       }),
     ],
   ]),

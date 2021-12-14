@@ -22,6 +22,8 @@ export const Select = styled.select`
   font-size: ${({ theme }) => theme.spacing(3)}px;
   margin-bottom: ${({ theme }) => theme.spacing(3)}px;
   margin-top: ${({ theme }) => theme.spacing(1)}px;
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
 `
 
 export const Button = styled.button`
@@ -34,6 +36,8 @@ export const Button = styled.button`
   border-radius: ${({ theme }) => theme.spacing(1)}px;
   font-size: ${({ theme }) => theme.spacing(3)}px;
   background: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.black};
+  cursor: pointer;
 `
 
 export const Lable = styled.label`

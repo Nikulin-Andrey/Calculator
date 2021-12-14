@@ -26,7 +26,7 @@ const lightColors = {
 }
 
 const darkColors = {
-  black: '#ffffff',
+  black: '#CCCCCC',
   white: '#31314F',
   error: '#c86464',
   primary: '#6B6B6B',
@@ -37,11 +37,11 @@ const darkColors = {
 
 const coloredColors = {
   black: '#000000',
-  white: '#434343',
+  white: '#9DF5BB',
   error: '#c86464',
-  primary: '#434343',
-  secondary: '#f2f2f2',
-  secondaryLight: '#6a6b7b',
+  primary: '#6F21B8',
+  secondary: '#16A849',
+  secondaryLight: '#9DF5BB',
   bordersColor: '#707070',
 }
 

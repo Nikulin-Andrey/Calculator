@@ -1,2 +1,3 @@
 export const ADD_OPERAND = 'ADD_OPERAND'
 export const ADD_OPERATION = 'ADD_OPERATION'
+export const CHANGE_THEME = 'CHANGE_THEME'
