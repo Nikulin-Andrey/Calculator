@@ -1,1 +1,1 @@
-// @todo: add some helpers
+export const isOperand = value => !isNaN(Number(value))

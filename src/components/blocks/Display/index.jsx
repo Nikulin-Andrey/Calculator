@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import {
   HOME_PAGE_ROUTE,
@@ -8,10 +9,13 @@ import {
 
 import { Container, Result } from './components'
 
-export default ({ result }) => {
+export default () => {
+  const { displayValue } = useSelector(
+    store => store.calculator,
+  )
   return (
     <Container>
-      <Result>{result}</Result>
+      <Result>{displayValue}</Result>
     </Container>
   )
 }

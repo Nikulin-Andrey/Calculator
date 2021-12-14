@@ -18,6 +18,7 @@ export const Button = styled.button`
   border: 1px solid
     ${({ theme }) => theme.colors.bordersColor};
   font-size: ${({ theme }) => theme.spacing(6)}px;
+  cursor: pointer;
 `
 
 export const ButtonRow = styled.div`

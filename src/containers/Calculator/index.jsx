@@ -16,7 +16,7 @@ export default () => {
   return (
     <Container>
       <LeftContent>
-        <Display result="4500.603" />
+        <Display />
         <TopLine />
         <Keypad />
         <RightLine />

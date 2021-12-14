@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import example from './example'
+import calculator from './calculator'
 
 export const rootReducer = combineReducers({
-  example,
+  calculator,
 })

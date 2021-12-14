@@ -1,44 +1,46 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
+  CALCULATOR_BUTTONS,
 } from '@/constants'
+import {
+  addOperandAtion,
+  addOperationAtion,
+} from '@/actions'
+import { isOperand } from '@/helpers'
 
 import { Container, Button, ButtonRow } from './components'
 
 export default () => {
+  const dispatch = useDispatch()
+
+  const onButtonClick = e => {
+    const value = e.target.dataset.value
+    if (value) {
+      const action = isOperand(value)
+        ? addOperandAtion(value)
+        : addOperationAtion(value)
+      dispatch(action)
+    }
+  }
+
   return (
-    <Container>
-      <ButtonRow>
-        <Button>C</Button>
-        <Button>7</Button>
-        <Button>8</Button>
-        <Button>9</Button>
-        <Button>*</Button>
-      </ButtonRow>
-      <ButtonRow>
-        <Button>-</Button>
-        <Button>4</Button>
-        <Button>5</Button>
-        <Button>6</Button>
-        <Button>\</Button>
-      </ButtonRow>
-      <ButtonRow>
-        <Button>+</Button>
-        <Button>1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
-        <Button>=</Button>
-      </ButtonRow>
-      <ButtonRow>
-        <Button>.</Button>
-        <Button>(</Button>
-        <Button>0</Button>
-        <Button>)</Button>
-        <Button>CE</Button>
-      </ButtonRow>
+    <Container onClick={onButtonClick}>
+      {CALCULATOR_BUTTONS.map((row, index) => {
+        return (
+          <ButtonRow key={index}>
+            {row.map((value, indexValue) => (
+              <Button data-value={value} key={indexValue}>
+                {value}
+              </Button>
+            ))}
+          </ButtonRow>
+        )
+      })}
     </Container>
   )
 }

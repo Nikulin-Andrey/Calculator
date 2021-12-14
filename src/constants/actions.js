@@ -1,1 +1,2 @@
-export const ACTION_PREFIX = '@/template'
+export const ADD_OPERAND = 'ADD_OPERAND'
+export const ADD_OPERATION = 'ADD_OPERATION'

@@ -15,6 +15,36 @@ const secondary = '#f2f2f2'
 const secondaryLight = '#6a6b7b'
 const bordersColor = '#707070'
 
+const lightColors = {
+  black: '#000000',
+  white: '#ffffff',
+  error: '#c86464',
+  primary: '#434343',
+  secondary: '#f2f2f2',
+  secondaryLight: '#6a6b7b',
+  bordersColor: '#707070',
+}
+
+const darkColors = {
+  black: '#ffffff',
+  white: '#31314F',
+  error: '#c86464',
+  primary: '#6B6B6B',
+  secondary: '#34543C',
+  secondaryLight: '#6a6b7b',
+  bordersColor: '#707070',
+}
+
+const coloredColors = {
+  black: '#000000',
+  white: '#434343',
+  error: '#c86464',
+  primary: '#434343',
+  secondary: '#f2f2f2',
+  secondaryLight: '#6a6b7b',
+  bordersColor: '#707070',
+}
+
 const size = {
   xs: 550,
   small: 768,
@@ -40,6 +70,23 @@ const below = Object.keys(size).reduce((acc, label) => {
   return acc
 }, {})
 
+export const lightTheme = {
+  above,
+  below,
+  font,
+  spacing,
+  spaces: [0, 4, 8, 16, 32, 64, 128],
+  fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80],
+  colors: lightColors,
+}
+export const darkTheme = {
+  ...lightTheme,
+  colors: darkColors,
+}
+export const coloredTheme = {
+  ...lightTheme,
+  colors: coloredColors,
+}
 export default {
   above,
   below,
