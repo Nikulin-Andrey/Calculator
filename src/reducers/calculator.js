@@ -3,8 +3,12 @@ import { handleActions } from 'redux-actions'
 import {
   addOperandAtion,
   addOperationAtion,
+  getResultAtion,
+  clearAllAtion,
+  clearExprationAtion,
   changeThemeAction,
 } from '@/actions'
+import { getDisplayValue, getCommand } from '@/helpers'
 
 const INITIAL_STATE = {
   displayValue: '0',
@@ -18,13 +22,37 @@ export default handleActions(
       addOperandAtion,
       (state, action) => ({
         ...state,
-        displayValue: action.payload,
+        displayValue: getDisplayValue(
+          state.displayValue,
+          action.payload,
+        ),
       }),
     ],
+    [addOperationAtion, getCommand],
     [
-      addOperationAtion,
+      getResultAtion,
+      (state, action) => {
+        console.log('result')
+        return {
+          ...state,
+        }
+      },
+    ],
+    [
+      clearExprationAtion,
+      (state, action) => {
+        console.log('CE')
+        return {
+          ...state,
+        }
+      },
+    ],
+    [
+      clearAllAtion,
       (state, action) => ({
         ...state,
+        displayValue: '0',
+        result: 0,
       }),
     ],
     [

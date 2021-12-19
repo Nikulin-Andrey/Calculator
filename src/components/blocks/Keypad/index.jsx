@@ -10,6 +10,9 @@ import {
 import {
   addOperandAtion,
   addOperationAtion,
+  getResultAtion,
+  clearAllAtion,
+  clearExprationAtion,
 } from '@/actions'
 import { isOperand } from '@/helpers'
 
@@ -20,11 +23,24 @@ export default () => {
 
   const onButtonClick = e => {
     const value = e.target.dataset.value
-    if (value) {
-      const action = isOperand(value)
-        ? addOperandAtion(value)
-        : addOperationAtion(value)
-      dispatch(action)
+    if (!value) {
+      return
+    }
+    switch (value) {
+      case '=':
+        dispatch(getResultAtion())
+        break
+      case 'C':
+        dispatch(clearAllAtion())
+        break
+      case 'CE':
+        dispatch(clearExprationAtion())
+        break
+      default:
+        const action = isOperand(value)
+          ? addOperandAtion(value)
+          : addOperationAtion(value)
+        dispatch(action)
     }
   }
 
