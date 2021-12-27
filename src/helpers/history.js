@@ -4,8 +4,9 @@ export const getHistoryExpration = (
   operation,
   commands,
   show,
+  operationChanged,
 ) => {
-  if (commands > 0 && show) {
+  if (commands > 0 && show && !operationChanged) {
     return `${x} ${operation} ${y}`
   }
 }

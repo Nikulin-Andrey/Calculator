@@ -6,8 +6,9 @@ import {
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
   THEMES,
+  CLEAR_ALL,
 } from '@/constants'
-import { changeThemeAction } from '@/actions'
+import { changeThemeAction, clearAllAtion } from '@/actions'
 
 import {
   Button,
@@ -26,6 +27,11 @@ export default () => {
     dispatch(changeThemeAction(e.target.value))
   }
 
+  const clearHistory = () => {
+    dispatch(clearAllAtion(true))
+    alert('History has been cleared!')
+  }
+
   return (
     <Container>
       <Heading>Settings</Heading>
@@ -39,7 +45,9 @@ export default () => {
           ))}
         </Select>
       </Lable>
-      <Button>Clear All History</Button>
+      <Button onClick={clearHistory}>
+        Clear All History
+      </Button>
     </Container>
   )
 }

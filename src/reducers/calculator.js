@@ -18,7 +18,7 @@ import {
 const INITIAL_STATE = {
   displayValue: '0',
   result: 0,
-  afterOperation: false,
+  changeOperand: true,
   beforeResult: true,
   commands: [],
   history: [],
@@ -31,10 +31,14 @@ export default handleActions(
       addOperandAtion,
       (state, action) => ({
         ...state,
+        changeOperand: false,
+        commands: state.beforeResult
+          ? [...state.commands]
+          : [],
         displayValue: getDisplayValue(
           state.displayValue,
           action.payload,
-          state.commands.length > 0,
+          state.changeOperand,
         ),
       }),
     ],
@@ -44,33 +48,33 @@ export default handleActions(
         const value = Number(state.displayValue)
         const commandsCount = state.commands.length
         console.log(state.beforeResult)
-        const result = executeCommand(
-          value,
-          commandsCount,
-          state.commands[commandsCount - 1],
-          state.result,
-          state.beforeResult,
-        )
+        const result = executeCommand(value, state)
         const command = new getCommand(action.payload)
-        console.log(state.commands[commandsCount - 1])
         const historyExpration = getHistoryExpration(
           state.result,
           value,
           state.commands[commandsCount - 1]?.type,
           commandsCount,
           state.beforeResult,
+          state.changeOperand,
         )
-
         return {
           ...state,
-          commands: [
-            ...state.commands,
-            new command(value, action.payload),
-          ],
+          commands:
+            state.changeOperand && commandsCount > 0
+              ? state.commands.map((current, index) =>
+                  index === commandsCount - 1
+                    ? new command(value, action.payload)
+                    : current,
+                )
+              : [
+                  ...state.commands,
+                  new command(value, action.payload),
+                ],
           result: result,
           displayValue: result + '',
-          afterOperation: !state.afterOperation,
           beforeResult: true,
+          changeOperand: true,
           history: historyExpration
             ? [historyExpration, ...state.history]
             : [...state.history],
@@ -81,17 +85,21 @@ export default handleActions(
       getResultAtion,
       (state, action) => {
         const commandsCount = state.commands.length
+        if (
+          (state.changeOperand && commandsCount === 0) ||
+          (!state.changeOperand && !state.beforeResult)
+        ) {
+          return { ...state }
+        }
         const value = state.beforeResult
           ? Number(state.displayValue)
           : state.commands[commandsCount - 1].value
         const type = state.commands[commandsCount - 1].type
-        const result = executeCommand(
-          value,
-          commandsCount,
-          state.commands[commandsCount - 1],
-          state.result,
-          true,
-        )
+        const result = executeCommand(value, {
+          ...state,
+          beforeResult: true,
+          changeOperand: false,
+        })
         const command = getCommand(type)
         const historyExpration = getHistoryExpration(
           state.result,
@@ -109,6 +117,7 @@ export default handleActions(
           result: result,
           displayValue: result + '',
           beforeResult: false,
+          changeOperand: true,
           history: historyExpration
             ? [historyExpration, ...state.history]
             : [...state.history],
@@ -119,10 +128,12 @@ export default handleActions(
       clearExprationAtion,
       (state, action) => {
         const lastCommand = state.commands.length - 1
+        const preLastCommand =
+          lastCommand > 0 ? lastCommand - 1 : lastCommand
         if (lastCommand < 0) {
           return { ...state }
         }
-        const result = state.commands[lastCommand].undo(
+        const result = state.commands[preLastCommand].undo(
           state.result,
           state.commands[lastCommand].value,
         )
@@ -131,6 +142,7 @@ export default handleActions(
           ...state,
           result: result,
           displayValue: result + '',
+          changeOperand: true,
           commands: state.commands.filter(
             (command, index) => index < lastCommand,
           ),
@@ -142,6 +154,7 @@ export default handleActions(
       (state, action) => ({
         ...INITIAL_STATE,
         theme: state.theme,
+        history: action.payload ? [] : [...state.history],
       }),
     ],
     [

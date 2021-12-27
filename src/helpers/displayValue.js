@@ -4,14 +4,14 @@ export const isOperand = value =>
 export const getDisplayValue = (
   prevValue,
   value,
-  commandBefore,
+  changeOperand,
 ) => {
   if (value === '.') {
-    return prevValue.includes(value)
+    return changeOperand
+      ? '0' + value
+      : prevValue.includes(value)
       ? prevValue
       : prevValue + value
   }
-  return prevValue === '0' || commandBefore
-    ? value
-    : prevValue + value
+  return changeOperand ? value : prevValue + value
 }

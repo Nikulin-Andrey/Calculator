@@ -34,11 +34,8 @@ export const getCommand = operationType => {
 
 export const executeCommand = (
   value,
-  commandsCount,
-  command,
-  prevResult,
-  beforeResult,
+  { commands, result, beforeResult, changeOperand },
 ) =>
-  commandsCount > 0 && beforeResult
-    ? command.execute(prevResult, value)
+  commands.length > 0 && beforeResult && !changeOperand
+    ? commands[commands.length - 1].execute(result, value)
     : value

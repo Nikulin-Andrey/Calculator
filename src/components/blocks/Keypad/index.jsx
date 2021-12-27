@@ -31,7 +31,7 @@ export default () => {
         dispatch(getResultAtion())
         break
       case 'C':
-        dispatch(clearAllAtion())
+        dispatch(clearAllAtion(false))
         break
       case 'CE':
         dispatch(clearExprationAtion())
