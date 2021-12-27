@@ -13,6 +13,8 @@ import {
   getResultAtion,
   clearAllAtion,
   clearExprationAtion,
+  openExprationAction,
+  closeExprationAction,
 } from '@/actions'
 import { isOperand } from '@/helpers'
 
@@ -35,6 +37,12 @@ export default () => {
         break
       case 'CE':
         dispatch(clearExprationAtion())
+        break
+      case '(':
+        dispatch(openExprationAction())
+        break
+      case ')':
+        dispatch(closeExprationAction())
         break
       default:
         const action = isOperand(value)

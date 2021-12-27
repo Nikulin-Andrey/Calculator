@@ -7,12 +7,18 @@ import {
   clearAllAtion,
   clearExprationAtion,
   changeThemeAction,
+  openExprationAction,
+  closeExprationAction,
 } from '@/actions'
 import {
   getDisplayValue,
   getCommand,
   executeCommand,
   getHistoryExpration,
+  getCommands,
+  getExprations,
+  getResult,
+  closeAllExprations,
 } from '@/helpers'
 
 const INITIAL_STATE = {
@@ -21,6 +27,7 @@ const INITIAL_STATE = {
   changeOperand: true,
   beforeResult: true,
   commands: [],
+  exprations: [],
   history: [],
   theme: 'light',
 }
@@ -47,31 +54,33 @@ export default handleActions(
       (state, action) => {
         const value = Number(state.displayValue)
         const commandsCount = state.commands.length
-        console.log(state.beforeResult)
+        const exprationsCount = state.exprations.length
         const result = executeCommand(value, state)
         const command = new getCommand(action.payload)
         const historyExpration = getHistoryExpration(
-          state.result,
           value,
-          state.commands[commandsCount - 1]?.type,
-          commandsCount,
-          state.beforeResult,
-          state.changeOperand,
+          state,
         )
         return {
           ...state,
           commands:
-            state.changeOperand && commandsCount > 0
-              ? state.commands.map((current, index) =>
-                  index === commandsCount - 1
-                    ? new command(value, action.payload)
-                    : current,
-                )
-              : [
-                  ...state.commands,
-                  new command(value, action.payload),
-                ],
-          result: result,
+            exprationsCount > 0
+              ? state.commands
+              : getCommands(
+                  value,
+                  action.payload,
+                  command,
+                  state,
+                ),
+          result:
+            exprationsCount > 0 ? state.result : result,
+          exprations: getExprations(
+            state,
+            result,
+            command,
+            value,
+            action.payload,
+          ),
           displayValue: result + '',
           beforeResult: true,
           changeOperand: true,
@@ -84,43 +93,64 @@ export default handleActions(
     [
       getResultAtion,
       (state, action) => {
-        const commandsCount = state.commands.length
-        if (
-          (state.changeOperand && commandsCount === 0) ||
-          (!state.changeOperand && !state.beforeResult)
-        ) {
-          return { ...state }
+        let displayValue = state.displayValue
+        console.log(state)
+        if (state.exprations.length > 0) {
+          displayValue = closeAllExprations(state)
         }
-        const value = state.beforeResult
-          ? Number(state.displayValue)
-          : state.commands[commandsCount - 1].value
-        const type = state.commands[commandsCount - 1].type
-        const result = executeCommand(value, {
-          ...state,
-          beforeResult: true,
-          changeOperand: false,
-        })
-        const command = getCommand(type)
-        const historyExpration = getHistoryExpration(
-          state.result,
-          value,
-          state.commands[commandsCount - 1]?.type,
-          commandsCount,
-          true,
-        )
+        const result = getResult({ ...state, displayValue })
         return {
           ...state,
-          commands: [
-            ...state.commands,
-            new command(value, type),
-          ],
-          result: result,
-          displayValue: result + '',
+          exprations: [],
+          commands: [...result.commands],
+          result: result.result,
+          displayValue: result.displayValue,
           beforeResult: false,
           changeOperand: true,
-          history: historyExpration
-            ? [historyExpration, ...state.history]
-            : [...state.history],
+          history: result.history,
+        }
+      },
+    ],
+    [
+      openExprationAction,
+      (state, action) => {
+        return {
+          ...state,
+          exprations: [
+            ...state.exprations,
+            {
+              result: 0,
+              commands: [],
+            },
+          ],
+          displayValue: '0',
+          beforeResult: true,
+          changeOperand: true,
+        }
+      },
+    ],
+    [
+      closeExprationAction,
+      (state, action) => {
+        const lastExpr = state.exprations.length - 1
+        if (lastExpr < 0) {
+          return { ...state }
+        }
+        const exprCommands =
+          state.exprations[lastExpr].commands
+        const result = getResult({
+          ...state,
+          commands: exprCommands,
+        })
+        console.log(result)
+        return {
+          ...state,
+          exprations: state.exprations.filter(
+            (expr, index) => index < lastExpr,
+          ),
+          displayValue: result.displayValue,
+          history: result.history,
+          changeOperand: true,
         }
       },
     ],

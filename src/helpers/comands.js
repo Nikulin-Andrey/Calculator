@@ -34,8 +34,47 @@ export const getCommand = operationType => {
 
 export const executeCommand = (
   value,
-  { commands, result, beforeResult, changeOperand },
-) =>
-  commands.length > 0 && beforeResult && !changeOperand
-    ? commands[commands.length - 1].execute(result, value)
+  {
+    commands,
+    result,
+    beforeResult,
+    changeOperand,
+    exprations,
+  },
+) => {
+  let x = result
+  const y = value
+  console.log(x, y)
+  let curresntCommands = [...commands]
+  if (exprations.length > 0) {
+    x = exprations[exprations.length - 1].result
+    curresntCommands =
+      exprations[exprations.length - 1].commands
+  }
+
+  return curresntCommands.length > 0 &&
+    beforeResult &&
+    !changeOperand
+    ? curresntCommands[curresntCommands.length - 1].execute(
+        x,
+        y,
+      )
     : value
+}
+
+export const getCommands = (
+  value,
+  type,
+  command,
+  { changeOperand, commands },
+) => {
+  const commandsCount = commands.length
+
+  return changeOperand && commandsCount > 0
+    ? commands.map((current, index) =>
+        index === commandsCount - 1
+          ? new command(value, type)
+          : current,
+      )
+    : [...commands, new command(value, type)]
+}

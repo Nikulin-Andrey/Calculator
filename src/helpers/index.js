@@ -1,3 +1,5 @@
 export * from './comands'
 export * from './displayValue'
 export * from './history'
+export * from './exprations'
+export * from './result'
