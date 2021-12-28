@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Display from '@/components/blocks/Display'
 import Keypad from '@/components/blocks/Keypad'
 import History from '@/components/blocks/History'
+import ErrorBoundary from '@/components/errorBoundary'
 
 import {
   Container,
@@ -15,13 +16,15 @@ import {
 export default () => {
   return (
     <Container>
-      <LeftContent>
-        <Display />
-        <TopLine />
-        <Keypad />
-        <RightLine />
-      </LeftContent>
-      <History />
+      <ErrorBoundary>
+        <LeftContent>
+          <Display />
+          <TopLine />
+          <Keypad />
+          <RightLine />
+        </LeftContent>
+        <History />
+      </ErrorBoundary>
     </Container>
   )
 }
