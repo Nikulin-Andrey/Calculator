@@ -20,14 +20,14 @@ import {
 } from './components'
 
 export default () => {
-  const { theme } = useSelector(store => store.calculator)
+  const { theme } = useSelector(store => store.calculator) // selector лучше вынести
   const dispatch = useDispatch()
 
-  const changeTheme = e => {
+  const changeTheme = e => { // add useCallback
     dispatch(changeThemeAction(e.target.value))
   }
 
-  const clearHistory = () => {
+  const clearHistory = () => { // add useCallback
     dispatch(clearAllAtion(true))
     alert('History has been cleared!')
   }
@@ -38,7 +38,7 @@ export default () => {
       <Lable>
         Switch Theme
         <Select defaultValue={theme} onChange={changeTheme}>
-          {THEMES.map((themeInfo, index) => (
+          {THEMES.map((themeInfo, index) => ( // index использовать нельзя, надо ID
             <Option key={index} value={themeInfo.value}>
               {themeInfo.text}
             </Option>

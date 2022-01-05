@@ -44,7 +44,7 @@ export const executeCommand = (
 ) => {
   let x = result
   const y = value
-  console.log(x, y)
+  console.log(x, y) // delete
   let curresntCommands = [...commands]
   if (exprations.length > 0) {
     x = exprations[exprations.length - 1].result
@@ -53,9 +53,9 @@ export const executeCommand = (
   }
 
   return curresntCommands.length > 0 &&
-    beforeResult &&
-    !changeOperand
+    (beforeResult && !changeOperand)
     ? curresntCommands[curresntCommands.length - 1].execute(
+        // плохо читаемо
         x,
         y,
       )

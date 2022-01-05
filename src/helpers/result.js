@@ -15,7 +15,9 @@ export const getResult = state => {
   const value = state.beforeResult
     ? Number(state.displayValue)
     : state.commands[commandsCount - 1].value
-  const type = state.commands[commandsCount - 1].type
+
+  const {type} = state.commands[commandsCount - 1]
+
   const result = executeCommand(value, {
     ...state,
     beforeResult: true,

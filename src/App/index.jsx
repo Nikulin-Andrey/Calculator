@@ -36,7 +36,8 @@ export default () => {
       ? lightTheme
       : theme === 'dark'
       ? darkTheme
-      : coloredTheme
+      : coloredTheme // плохо читается, switch + useMemo добавить
+
 
   return (
     <ThemeProvider theme={currentTheme}>

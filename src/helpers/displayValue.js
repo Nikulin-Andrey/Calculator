@@ -8,7 +8,7 @@ export const getDisplayValue = (
 ) => {
   if (value === '.') {
     return changeOperand
-      ? '0' + value
+      ? '0' + value // плохо читаемо, использовать if
       : prevValue.includes(value)
       ? prevValue
       : prevValue + value

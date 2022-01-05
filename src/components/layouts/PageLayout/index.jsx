@@ -8,7 +8,7 @@ const PageLayout = ({ children }) => (
 )
 
 PageLayout.propTypes = {
-  children: pt.node,
+  children: pt.node, // pt - не очень название, не совсем понятно
 }
 
 export default PageLayout

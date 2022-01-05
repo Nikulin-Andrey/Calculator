@@ -29,7 +29,7 @@ export const closeAllExprations = state => {
     if (state.exprations[index].commands.length === 0) {
       continue
     }
-    let result = getResult({
+    const result = getResult({
       ...state,
       commands: state.exprations[index].commands,
     })

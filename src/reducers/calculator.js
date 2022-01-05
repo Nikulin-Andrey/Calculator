@@ -93,7 +93,7 @@ export default handleActions(
     [
       getResultAtion,
       (state, action) => {
-        let displayValue = state.displayValue
+        let {displayValue} = state
         console.log(state)
         if (state.exprations.length > 0) {
           displayValue = closeAllExprations(state)
