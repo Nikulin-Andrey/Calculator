@@ -15,9 +15,9 @@ export default class ErrorBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.error) {
+    if (this.state.error) { // использовать деструктаризацию, DRY
       return (
-        <ErrorMessage>Somthing went wrong!</ErrorMessage>
+        <ErrorMessage>Something went wrong!</ErrorMessage>
       )
     }
     return this.props.children

@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
 
 import {
-  ADD_OPERAND,
+  ADD_OPERAND, // ADD_OPERAND_ACTION_TYPE
   ADD_OPERATION,
   CLEAR_ALL,
   CLEAR_EXPRATION,

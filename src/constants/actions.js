@@ -6,3 +6,4 @@ export const CLEAR_ALL = 'CLEAR_ALL'
 export const CLEAR_EXPRATION = 'CLEAR_EXPRATION'
 export const OPEN_EXPRATION = 'ADD_EXPRATION'
 export const CLOSE_EXPRATION = 'CLOSE_EXPRATION'
+// лучше файлы такого рода называть actionTypes

@@ -4,8 +4,8 @@ export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing(3)}px
     ${({ theme }) => theme.spacing(5)}px;
   font-size: ${({ theme }) => theme.spacing(3)}px;
-  width: 20%;
-  height: 95%;
+  width: 20%; // лучше 100 процентов, а padding-ами делать отступы
+  height: 95%; // лучше 100 процентов, а padding-ами делать отступы
 `
 
 export const Heading = styled.h2`

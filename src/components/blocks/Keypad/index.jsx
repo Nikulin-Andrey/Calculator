@@ -23,14 +23,14 @@ import { Container, Button, ButtonRow } from './components'
 export default () => {
   const dispatch = useDispatch()
 
-  const onButtonClick = e => {
-    const value = e.target.dataset.value
+  const onButtonClick = e => { // add useCallback  && handleOperationClick
+    const {value} = e.target.dataset // по-хорошему можно вынести и использовать редакс санки, чтобы компонент был максимально глупым :)
     if (!value) {
       return
     }
     switch (value) {
       case '=':
-        dispatch(getResultAtion())
+        dispatch(getResultAtion()) // можно сделать диспатч одного экшена и просто передавать тип, вместо того, чтобы создавать столько функций
         break
       case 'C':
         dispatch(clearAllAtion(false))
@@ -45,7 +45,7 @@ export default () => {
         dispatch(closeExprationAction())
         break
       default:
-        const action = isOperand(value)
+        const action = isOperand(value) // лучше в таких случаях использовать if
           ? addOperandAtion(value)
           : addOperationAtion(value)
         dispatch(action)
